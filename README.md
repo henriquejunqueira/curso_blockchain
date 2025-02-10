@@ -82,3 +82,26 @@ console.log(block.toString());
 ```
 
 - É importante notar que este código está usando a função `console.log()` para sair o resultado do método `toString()` para a console. Isso é útil para depuração e inspeção das propriedades do objeto block.
+
+### Bloco Genesis
+
+- Adicionado no arquivo block.js:
+
+```javascript
+    static genesis() {
+        return new this('Genesis time', '-----', 'f1r57-h45h', []);
+    }
+```
+
+- Este código define um método estático chamado genesis na classe Block. Métodos estáticos são métodos que podem ser chamados diretamente na própria classe, em vez de em uma instância da classe.
+- O método genesis cria uma nova instância da classe Block chamando o construtor Block com argumentos específicos: 'Genesis time', '-----', 'f1r57-h45h' e um array vazio.
+  A sintaxe new this(...) é usada para chamar o construtor na classe atual, que é Block. A palavra-chave this se refere à própria classe e não a uma instância da classe.
+- Este método é útil para criar um bloco especial "genesis" que pode ser usado como o primeiro bloco na cadeia. Este bloco geralmente tem características especiais e é usado para inicializar a cadeia.
+- Para usar este método, você simplesmente o chama diretamente na classe, assim:
+
+```javascript
+const genesisBlock = Block.genesis();
+```
+
+- Isso criará uma nova instância da classe Block com as propriedades definidas com os valores passados no método genesis.
+- Também é importante notar que o método genesis é um método estático, então ele não pode acessar as propriedades da instância da classe, o que significa que ele não pode usar this para acessá-las.
