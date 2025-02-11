@@ -175,3 +175,36 @@ const SHA256 = require('crypto-js/sha256');
 - É uma forma de garantir que os dados no bloco não foram adulterados.
 
 ---
+
+### Teste Classe Block
+
+- Adicionado no arquivo block.test.js:
+
+```javascript
+const Block = require('./block');
+
+describe('Block', () => {
+  let data, lastBlock, block;
+  beforeEach(() => {
+    data = 'bar';
+    lastBlock = Block.genesis();
+    block = Block.mineBlock(lastBlock, data);
+  });
+
+  it('sets the `data` to match the input', () => {
+    expect(block.data).toEqual(data);
+  });
+
+  it('sets the `lastHash` to match the hash of the last block', () => {
+    expect(block.lastHash).toEqual(lastBlock.hash);
+  });
+});
+```
+
+- O código acima está testando uma classe chamada "Block" usando o framework de teste Jest. Ele possui dois casos de teste:
+
+1. O primeiro caso de teste está usando a função it para testar se a propriedade data do objeto block é igual ao valor de entrada data que foi passado para o método mineBlock. Ele está usando o matcher toEqual para verificar se a propriedade data do objeto block é igual ao valor de entrada data.
+2. O segundo caso de teste também está usando a função it para testar se a propriedade lastHash do objeto block é igual à propriedade hash do objeto lastBlock. Ele está usando o matcher toEqual para verificar se a propriedade lastHash do objeto block é igual ao hash do objeto lastBlock.
+
+- A função beforeEach é executada antes de cada caso de teste e cria as variáveis ​​data, lastBlock e block usadas nos casos de teste. Isso garante que cada caso de teste esteja usando um conjunto fresco de dados e objetos.
+- A função describe é usada para agrupar casos de teste relacionados. Ele serve somente para fins de organização e não é necessário para que os casos de teste funcionem.
