@@ -226,3 +226,19 @@ class Blockchain {
 - O código acima define uma classe chamada "Blockchain". A classe tem uma função construtora que inicializa um array vazio chamado "chain" como uma variável de instância.
 - A função construtora também chama o método "genesis" da classe "Block" importada e atribui o valor retornado para o primeiro elemento do array "chain", criando o primeiro bloco da blockchain e configurando-o como o bloco gênese.
 - Essa classe ainda não possui métodos, mas é provável que métodos serão adicionados no futuro para adicionar novos blocos à cadeia, validar a integridade da cadeia e outras operações relacionadas à blockchain.
+
+---
+
+#### AddBlock na Classe Blockchain
+
+```javascript
+  addBlock(data) {
+    const block = Block.mineBlock(this.chain[this.chain.length-1], data);
+    this.chain.push(block);
+    return block;
+  }
+```
+
+- O código acima define um método chamado "addBlock" dentro da classe "Blockchain". O método recebe um parâmetro chamado "data" que representa os dados que serão adicionados ao novo bloco.
+- O método cria primeiramente um novo bloco, chamando o método "mineBlock" da classe "Block" importada e passando o último bloco da array "chain" e os dados como argumentos. O método "mineBlock" "mina" o novo bloco calculando seu hash e cria um novo objeto com as propriedades timestamp, lastHash, hash e data.
+- Em seguida, o novo bloco é adicionado ao final da array "chain" usando o método "push". O método retorna o novo bloco, permitindo que o usuário da classe tenha uma referência ao novo bloco depois que ele foi adicionado à cadeia.
