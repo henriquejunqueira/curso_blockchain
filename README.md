@@ -6,7 +6,7 @@
 - Instalado crypto-js: `$ npm i crypto-js`
 - Instalado jest para testes: `$ npm i jest --save-dev`
 
-### Classe Block
+#### Classe Block
 
 - A classe Block é uma parte fundamental em qualquer implementação de blockchain. Ela representa cada "bloco" na corrente de blocos, contendo as informações relevantes para aquele momento.
 
@@ -65,7 +65,7 @@ const Block = require('./block');
 
 ---
 
-### Primeiro Bloco
+#### Primeiro Bloco
 
 ```javascript
 const Block = require('./block');
@@ -91,7 +91,7 @@ console.log(block.toString());
 
 ---
 
-### Bloco Genesis
+#### Bloco Genesis
 
 - Adicionado no arquivo block.js:
 
@@ -116,7 +116,7 @@ const genesisBlock = Block.genesis();
 
 ---
 
-### MineBlock
+#### MineBlock
 
 - Adicionado no arquivo block.js:
 
@@ -150,7 +150,7 @@ console.log(primeiroBloco.toString());
 
 ---
 
-### Criando o Hash Através do SHA-256
+#### Criando o Hash Através do SHA-256
 
 ```javascript
 const SHA256 = require('crypto-js/sha256');
@@ -176,7 +176,7 @@ const SHA256 = require('crypto-js/sha256');
 
 ---
 
-### Teste Classe Block
+#### Teste Classe Block
 
 - Adicionado no arquivo block.test.js:
 
@@ -208,3 +208,21 @@ describe('Block', () => {
 
 - A função beforeEach é executada antes de cada caso de teste e cria as variáveis ​​data, lastBlock e block usadas nos casos de teste. Isso garante que cada caso de teste esteja usando um conjunto fresco de dados e objetos.
 - A função describe é usada para agrupar casos de teste relacionados. Ele serve somente para fins de organização e não é necessário para que os casos de teste funcionem.
+
+---
+
+#### Classe Blockchain
+
+```javascript
+const Block = require('./block');
+
+class Blockchain {
+  constructor() {
+    this.chain = [Block.genesis()];
+  }
+}
+```
+
+- O código acima define uma classe chamada "Blockchain". A classe tem uma função construtora que inicializa um array vazio chamado "chain" como uma variável de instância.
+- A função construtora também chama o método "genesis" da classe "Block" importada e atribui o valor retornado para o primeiro elemento do array "chain", criando o primeiro bloco da blockchain e configurando-o como o bloco gênese.
+- Essa classe ainda não possui métodos, mas é provável que métodos serão adicionados no futuro para adicionar novos blocos à cadeia, validar a integridade da cadeia e outras operações relacionadas à blockchain.
