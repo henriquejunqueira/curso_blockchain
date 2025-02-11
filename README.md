@@ -242,3 +242,57 @@ class Blockchain {
 - O código acima define um método chamado "addBlock" dentro da classe "Blockchain". O método recebe um parâmetro chamado "data" que representa os dados que serão adicionados ao novo bloco.
 - O método cria primeiramente um novo bloco, chamando o método "mineBlock" da classe "Block" importada e passando o último bloco da array "chain" e os dados como argumentos. O método "mineBlock" "mina" o novo bloco calculando seu hash e cria um novo objeto com as propriedades timestamp, lastHash, hash e data.
 - Em seguida, o novo bloco é adicionado ao final da array "chain" usando o método "push". O método retorna o novo bloco, permitindo que o usuário da classe tenha uma referência ao novo bloco depois que ele foi adicionado à cadeia.
+
+#### Teste Classe Blockchain Parte 1
+
+```javascript
+const { it } = require('@jest/globals');
+const Blockchain = require('./blockchain');
+
+describe('Blockchain', () => {
+  let bc;
+  beforeEach(() => {
+    bc = new Blockchain();
+  });
+
+  it('starts with the genesis block', () => {});
+});
+```
+
+- O código acima é um arquivo de teste para a classe "Blockchain". Ele está usando o framework de teste Jest para testar a funcionalidade da classe.
+- A função describe é usada para agrupar casos de teste relacionados. Ela recebe uma string como argumento, neste caso "Blockchain", descrevendo a classe sendo testada.
+- A função beforeEach é executada antes de cada caso de teste dentro do bloco describe. Ele cria uma nova instância da classe "Blockchain" e atribui-a à variável "bc", para que cada caso de teste esteja usando uma nova instância da classe.
+- A função it é usada para definir um caso de teste. Ele recebe uma string como argumento, descrevendo o que o caso de teste está testando. A função que segue é o caso de teste real.
+- O primeiro caso de teste está verificando se a blockchain começa com o bloco gênese, mas o caso de teste real está faltando. O caso de teste deveria verificar se o primeiro bloco da array "bc.chain" é o bloco gênese e afirmar isso com um matcher, como toEqual ou toBe
+
+#### Teste Classe Blockchain Parte 2
+
+```javascript
+const Blockchain = require('./blockchain');
+const Block = require('./block');
+
+describe('Blockchain', () => {
+  let bc;
+  beforeEach(() => {
+    bc = new Blockchain();
+  });
+
+  it('starts with the genesis block', () => {
+    expect(bc.chain[0]).toEqual(Block.genesis());
+  });
+
+  it('adds a new block', () => {
+    const data = 'foo';
+    bc.addBlock(data);
+    expect(bc.chain[bc.chain.length - 1].data).toEqual(data);
+  });
+});
+```
+
+- O código acima é um arquivo de teste para a classe "Blockchain". Ele está usando o framework de teste Jest para testar a funcionalidade da classe.
+- A função describe é usada para agrupar casos de teste relacionados. Ela recebe uma string como argumento, neste caso "Blockchain", descrevendo a classe sendo testada.
+- A função beforeEach é executada antes de cada caso de teste dentro do bloco describe. Ele cria uma nova instância da classe "Blockchain" e atribui-a à variável "bc", para que cada caso de teste esteja usando uma nova instância da classe.
+- A função it é usada para definir um caso de teste. Ele recebe uma string como argumento, descrevendo o que o caso de teste está testando. A função que segue é o caso de teste real.
+  O primeiro caso de teste verifica se o primeiro elemento da array "bc.chain" é o bloco gênese, usando o matcher toEqual e passando o bloco gênese da classe "Block" importada.
+- O segundo caso de teste verifica se um novo bloco é adicionado à cadeia corretamente. Ele primeiro adiciona um novo bloco à cadeia usando o método "addBlock" com os dados "foo". Em seguida, ele verifica que o último elemento da array "bc.chain" tem os mesmos dados que os dados passados para o método "addBlock" usando o matcher toEqual.
+- Ambos os casos de teste usam a função expect e matchers (toEqual) para afirmar que o resultado esperado corresponde ao resultado real.
