@@ -296,3 +296,20 @@ describe('Blockchain', () => {
   O primeiro caso de teste verifica se o primeiro elemento da array "bc.chain" é o bloco gênese, usando o matcher toEqual e passando o bloco gênese da classe "Block" importada.
 - O segundo caso de teste verifica se um novo bloco é adicionado à cadeia corretamente. Ele primeiro adiciona um novo bloco à cadeia usando o método "addBlock" com os dados "foo". Em seguida, ele verifica que o último elemento da array "bc.chain" tem os mesmos dados que os dados passados para o método "addBlock" usando o matcher toEqual.
 - Ambos os casos de teste usam a função expect e matchers (toEqual) para afirmar que o resultado esperado corresponde ao resultado real.
+
+---
+
+#### Método Para A Validação da Blockchain Parte 1
+
+```javascript
+  isValidChain(chain) {
+    if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) return false;
+  }
+```
+
+- O código acima define um método chamado "isValidChain" dentro da classe onde este método está localizado. O método recebe um único parâmetro chamado "chain" que deve ser uma array de blocos.
+- O método começa comparando o primeiro elemento da array "chain", que deve ser o bloco gênese, com o bloco gênese real criado pelo método estático "genesis" da classe "Block" importada.
+- Ele usa o método JSON.stringify() para converter ambos os objetos para strings e compara-os com o operador de igualdade (!==). Se eles não forem iguais, ele retorna false, indicando que a cadeia não é válida, pois não começa com o bloco gênese.
+- Vale lembrar que esse método não está completo e não verificará a cadeia por mais problemas, ele só está verificando se o primeiro bloco é o bloco genesis.
+
+---
