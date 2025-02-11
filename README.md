@@ -4,6 +4,7 @@
 
 - Criando o package.json: `$ npm init -y`
 - Instalado crypto-js: `$ npm i crypto-js`
+- Instalado jest para testes: `$ npm i jest --save-dev`
 
 ### Classe Block
 
@@ -147,6 +148,8 @@ console.log(primeiroBloco.toString());
 - Em seguida, ele chama a função "console.log", passando o resultado da chamada do método "toString" na variável "primeiroBloco ". O método "toString" é usado para exibir as propriedades do objeto em um formato legível pelo ser humano.
 - Em resumo, esse código cria um novo bloco na blockchain, com "$500" como seus dados e exibe ele como uma string.
 
+---
+
 ### Criando o Hash Através do SHA-256
 
 ```javascript
@@ -170,3 +173,5 @@ const SHA256 = require('crypto-js/sha256');
 - O método toString() é usado para converter o valor de hash resultante em uma string e retorná-lo.
 - Este método é usado para garantir a integridade dos dados armazenados no bloco, gerando um hash único para cada bloco, que é baseado nos dados, timestamp e hash do último bloco.
 - É uma forma de garantir que os dados no bloco não foram adulterados.
+
+---
