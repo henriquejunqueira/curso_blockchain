@@ -29,6 +29,9 @@ class Blockchain {
       }
     }
 
+    console.log('Genesis from chain:', chain[0]);
+    console.log('Genesis from function:', Block.genesis());
+
     return true;
   }
 }

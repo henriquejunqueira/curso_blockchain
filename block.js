@@ -33,7 +33,8 @@ class Block {
   static mineBlock(lastBlock, data) {
     const timestamp = Date.now(); // Get the current timestamp
     const lastHash = lastBlock.hash; // Use the last block's hash as reference
-    const hash = 'a-fazer-hash'; // Placeholder for hash generation logic
+    //const hash = 'a-fazer-hash'; // Placeholder for hash generation logic
+    const hash = Block.hash(timestamp, lastHash, data); // ✅ Calcula o hash corretamente // Placeholder for hash generation logic
 
     // Return a new Block instance with the computed values
     return new this(timestamp, lastHash, hash, data);
