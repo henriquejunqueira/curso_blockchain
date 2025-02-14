@@ -4,7 +4,10 @@
 
 - Criando o package.json: `$ npm init -y`
 - Instalado crypto-js: `$ npm i crypto-js`
-- Instalado jest para testes: `$ npm i jest --save-dev`
+- Instalado jest para testes em modo de desenvolvimento: `$ npm i jest --save-dev`
+- Rodando testes: `$ npm run test`
+- Instalado express: `$ npm i express --save`
+- Especificando a porta que o servidor irá rodar: `$ HTTP_PORT = 3002 npm run dev`
 
 #### Classe Block
 
