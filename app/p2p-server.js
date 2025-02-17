@@ -5,11 +5,28 @@ const peers = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
 // $ HTTP_PORT = 3002 P2P_PORT = 5003 PEERS=ws://localhost:5001, ws://localhost:5002 npm run dev
 
-// A classe P2pServer é usada para criar um servidor P2P (peer-to-peer) que se conecta a outros
-// nós na rede e permite a sincronização de dados.
+// The P2pServer class is used to create a P2P (peer-to-peer) server that connects to other nodes
+// on the network and allows data synchronization.
 class P2pServer {
   constructor(blockchain) {
     this.blockchain = blockchain;
     this.socket = [];
   }
+}
+
+// The "listen" function creates a new WebSocket server using the Websocket.Server class, and it listens 
+// on the port specified by the P2P_PORT variable. When a new connection is made to the server, 
+// the connectSocket function is called and passed the new socket as an argument.
+listenerCount(){
+
+    // Creates a new instance of a WebSocket server, specifying the port on which the server should listen. 
+    // The port is specified by the P2P_PORT variable.
+    const server = new Websocket.Server({port: P2P_PORT});
+
+    // Adds a "connection" event to the server. When a new client connects to the server, the function passed 
+    // as an argument will be called, in this case, this.connectSocket(socket).
+    server.on('connetion', socket => this.connectSocket(socket));
+
+
+
 }
