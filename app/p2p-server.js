@@ -26,7 +26,17 @@ listenerCount(){
     // Adds a "connection" event to the server. When a new client connects to the server, the function passed 
     // as an argument will be called, in this case, this.connectSocket(socket).
     server.on('connetion', socket => this.connectSocket(socket));
+}
 
+// The "connectSocket" function is called when a new connection is made to the server, and stores the 
+// new socket in an array called "socket" and logs a "Socket connected" message to the console to 
+// indicate that a new socket has been connected to the server.
+connectSocket(socket){
 
+    // It stores the new socket in an array called "socket" and pushes the new socket into it.
+    this.socket.push(socket);
 
+    // It logs a "Socket connected" message to the console to indicate that a new socket has been 
+    // connected to the server.
+    console.log('Socket connected');
 }
