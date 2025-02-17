@@ -8,6 +8,7 @@
 - Rodando testes: `$ npm run test`
 - Instalado express: `$ npm i express --save`
 - Especificando a porta que o servidor irá rodar: `$ HTTP_PORT = 3002 npm run dev`
+- Instalando pacote para trabalhar com websocket: `$ npm i ws --save`
 
 #### Classe Block
 
