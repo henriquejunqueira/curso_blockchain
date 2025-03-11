@@ -317,3 +317,10 @@ describe('Blockchain', () => {
 - Vale lembrar que esse método não está completo e não verificará a cadeia por mais problemas, ele só está verificando se o primeiro bloco é o bloco genesis.
 
 ---
+
+### Rodando os Servidores p2p
+
+- Abri um primeiro terminal rodando `$ npm run dev` o qual cria uma escuta nas portas 5001 que é o P2P_PORT
+  configurado no /app/p2p-server.js e na 3001 que é o HTTP_PORT configurado no /app/index.js
+- Com o primeiro terminal ainda aberto rodei em um segundo terminal `$ HTTP_PORT=3002 P2P_PORT=5002 PEERS=ws://localhost:5001 npm run dev` para conectar o servidor WebSocket
+- Com o primeiro e o segundo termial ainda aberto rodei em um terceiro terminal `$ HTTP_PORT=3003 P2P_PORT=5003 PEERS=ws://localhost:5001,ws://localhost:5002 npm run dev` para conectar novamente em um servidor WebSocket

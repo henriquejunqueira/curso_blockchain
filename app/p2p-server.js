@@ -33,10 +33,17 @@ class P2pServer {
     console.log(`Listening for peer-to-peer connections on: ${P2P_PORT}`);
   }
 
+  // The "connectToPeers" function iterates through an array of peers, creates a new WebSocket connection
+  // for each peer, adds an event listener for the "open" event on the socket, when the socket is opened,
+  // it calls the connectSocket function passing the socket as an argument.
   connectToPeers() {
+    // Iterates through an array of peers called "peers"
     peers.forEach((peer) => {
+      // For each peer, create a new WebSocket connection using the WebSocket class and the peer's address.
       const socket = new Websocket(peer);
 
+      // Adds an event listener for the "open" event on the socket, when the socket is opened,
+      // it calls the function
       socket.on('open', () => this.connectSocket(socket));
     });
   }
@@ -51,7 +58,33 @@ class P2pServer {
     // It logs a "Socket connected" message to the console to indicate that a new socket has been
     // connected to the server.
     console.log('Socket connected');
+
+    this.messageHandler(socket);
+
+    this.sendChain(socket);
+  }
+
+  sendChain(socket) {
+    socket.send(JSON.stringify(this.blockchain.chain));
+  }
+
+  messageHandler(socket) {
+    // creates an event for the socket to listen for messages, and when a message is received,
+    // it will be passed as an argument to the anonymous function that is being passed as
+    // the second argument
+    socket.on('message', (message) => {
+      // converts the received message, which is a string, to a JSON object so that it can
+      // be manipulated more easily
+      const data = JSON.parse(message);
+
+      this.blockchain.replaceChain(data);
+    });
+  }
+
+  syncChain() {
+    this.socket.forEach((socket) => this.sendChain(socket));
   }
 }
 
+// Exports the P2Server class, so that it can be used in other parts of the application.
 module.exports = P2pServer;
